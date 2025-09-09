@@ -1,0 +1,14 @@
+body {
+	font-family: Arial, sans-serif;
+	text-align: center;
+	margin-top: 50px;
+}
+.container {
+	width: 80%;
+	margin: auto;
+	text-align: center;
+}
+input[type="text"], input[type="submit"] {
+	padding: 10px;
+	margin: 5px;
+}

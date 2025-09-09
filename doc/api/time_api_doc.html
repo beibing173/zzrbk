@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>time_api.php API文档</title>
+</head>
+<body>
+    <h1>time_api.php API文档</h1>
+    <h2>1. API概述</h2>
+    <p>`time_api.php` 是一个简单的API接口，用于获取当前服务器时间。该接口返回JSON格式的数据，包含当前时间。</p>
+
+    <h2>2. 请求方法</h2>
+    <p>
+        - HTTP方法: GET<br>
+        - URL: <a href="https://zzrbk{$rthSuffix}/API/time_api.php">https://zzrbk{$rthSuffix}/API/time_api.php</a>
+    </p>
+
+    <h2>3. 请求参数</h2>
+    <p>该API接口不需要任何请求参数。</p>
+
+    <h2>4. 返回值</h2>
+    <p>返回值是一个JSON对象，包含以下字段：</p>
+    <table border="1">
+        <tr>
+            <th>字段</th>
+            <th>类型</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+            <td>success</td>
+            <td>布尔值</td>
+            <td>表示请求是否成功。</td>
+        </tr>
+        <tr>
+            <td>time</td>
+            <td>字符串</td>
+            <td>表示当前服务器时间，格式为 YYYY-MM-DD HH:MM:SS。</td>
+        </tr>
+    </table>
+
+    <h2>5. 示例</h2>
+    <h3>5.1 请求示例</h3>
+    <p>使用curl命令调用API：</p>
+    <pre>curl -X GET https://zzrbk{$rthSuffix}/API/time_api.php</pre>
+
+    <h3>5.2 返回示例</h3>
+    <p>成功返回：</p>
+    <pre>{
+    "success": true,
+    "time": "2025-01-27 23:46:45"
+}</pre>
+    <p>失败返回：</p>
+    <pre>{
+    "success": false,
+    "message": "无法获取时间"
+}</pre>
+
+    <h2>6. 错误处理</h2>
+    <p>如果请求失败，API将返回一个包含错误信息的JSON对象。</p>
+	<h2>7. 关于</h2>
+	<p>服务器时间=北京时间（UTC+8）</p>
+	<p>原理来自时钟:<a href="https://zzrbk{$rthSuffix}/gongju/time.html">https://zzrbk{$rthSuffix}/gongju/time.html</a></p>
+    <h2>8. 举例代码</h2>
+<style>
+/* 基本的代码展示框样式 */
+.code-highlight {
+    background-color: #f4f4f4f4; /* 背景颜色 */
+    border: 1px solid #ddd; /* 边框 */
+    border-radius: 4px; /* 边框圆角 */
+    padding: 10px; /* 内边距 */
+    font-family: 'Courier New', Courier, monospace; /* 等宽字体 */
+    font-size: 14px; /* 字体大小 */
+    overflow-x: auto; /* 水平滚动条 */
+    white-space: pre-wrap; /* 保留空白符序列 */
+    word-break: break-word; /* 单词换行 */
+    margin: 20px 0; /* 外边距 */
+}
+
+/* 代码文本样式 */
+.code-highlight code {
+    color: #333; /* 文本颜色 */
+}
+
+/* 行号样式（可选） */
+.code-highlight .line-numbers {
+    margin-right: 10px; /* 行号与代码的距离 */
+    color: #888; /* 行号颜色 */
+    font-size: 12px; /* 行号字体大小 */
+    text-align: right; /* 行号右对齐 */
+    user-select: none; /* 禁止选择文本 */
+    display: inline-block; /* 行号块级显示 */
+    width: 3em; /* 行号宽度 */
+}
+</style>
+
+<div class="code-highlight">
+    <pre>
+        <code>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>API 调用演示</h1>
+    <div id="data-container">Loading data...</div>
+
+    <script>
+        // 假设的 API 端点
+        const apiEndpoint = 'https://zzrbk{$rthSuffix}/API/time_api.php';
+
+        // 使用 fetch API 调用 API 端点
+        fetch(apiEndpoint)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const dataContainer = document.getElementById('data-container');
+                dataContainer.textContent = JSON.stringify(data, null, 2); // 格式化 JSON 字符串
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+                document.getElementById('data-container').textContent = 'Failed to fetch data.';
+            });
+    </script>
+</body>
+</html>
+        </code>
+    </pre>
+</div>
+<a href="https://zzrbk{$rthSuffix}/doc/api/code/time_code.js">举例代码查看(为什么js,不用js会被和谐)</a>
+
+ <table border="1">
+        <tr>
+            <th>字段</th>
+            <th>类型</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+            <td>success</td>
+            <td>布尔值</td>
+            <td>表示请求是否成功。</td>
+        </tr>
+        <tr>
+            <td>message</td>
+            <td>字符串</td>
+            <td>描述错误信息。</td>
+        </tr>
+    </table>
+</body>
+</html>

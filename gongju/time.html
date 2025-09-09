@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+	   <title>实时时间显示</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .time-container {
+            color: #333;
+            font-size: 30px;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .time-container {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="time-container" id="time-container">
+        <!-- 年月日 -->
+        <span id="datetime"></span><br>
+        <!-- 时间 -->
+        <span id="time"></span>
+    </div>
+    <script>
+        function updateTime() {
+            const datetimeElement = document.getElementById('datetime');
+            const timeElement = document.getElementById('time');
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;
+            const day = now.getDate();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            datetimeElement.textContent = `${year}年${month}月${day}日 `;
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+            
+            // 设置定时器，每秒更新时间显示
+            setTimeout(updateTime, 1000);
+        }
+
+        // 页面加载完毕后立即更新时间
+        window.onload = () => {
+            updateTime();
+        };
+    </script>
+</body>
+</html>
+

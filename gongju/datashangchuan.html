@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center; /* 使搜索框居中显示 */
+            margin-top: 50px; /* 顶部留白 */
+        }
+        .search-container {
+            display: flex;
+            justify-content: center; /* 使输入框和按钮在一行上并居中 */
+            align-items: center; /* 垂直居中 */
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-right: 5px; /* 与按钮之间留有间隔 */
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+        }
+</style>
+<body>
+
+<h2>文件上传</h2>
+
+<form action="upload.php" method="get" enctype="multipart/form-data">
+    <label for="file">选择文件（一次上传一个文件）:</label><br>
+    <input type="file" id="file" name="file"><br>
+    <input type="submit" value="上传文件">
+<p>烂了尾的上传文件功能，有大神愿意联系我，可以一起做</p>
+</form>
+
+</body>
+</html>
