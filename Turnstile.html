@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<link rel="stylesheet" href="template">
+    <div class="bg-img"></div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张钊睿的博客-人机验证</title>
+    <!-- 引入 Cloudflare Turnstile 官方JS -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		text-align: center; /* 使搜索框居中显示 */
+		margin-top: 50px; /* 顶部留白 */
+	}
+	.search-container {
+		display: flex;
+		justify-content: center; /* 使输入框和按钮在一行上并居中 */
+		align-items: center; /* 垂直居中 */
+	}
+	input[type="text"] {
+		width: 300px;
+		padding: 10px;
+		margin-right: 5px; /* 与按钮之间留有间隔 */
+	}
+	input[type="submit"] {
+		padding: 10px 20px;
+	}
+</style>
+<body>
+    <h1>张钊睿的博客-人机验证</h1>
+    <!-- Turnstile 验证框 -->
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAA4jWmTRvld7sxks" data-callback="onVerify"></div>
+  <!-- wow -->
+    <p>正在验证您是否是真人。这可能需要几秒钟时间。</p>
+	<p>验证所用的时间比预期时间长。如果问题仍然存在，请检查您的Internet连接并刷新页面。</p>
+	<p>Key ID：0x4AAAAAAA4jWmTRvld7sxks</p>
+	<p>性能和安全由Cloudflare提供</p>
+	<p>本网站使用了Cookie以改善您的的体验</p>
+            <p>Email: beibing@zzrbk.ip-ddns.com</p>
+            <img style="display:inline-block;vertical-align:middle;width:20px;height:20px" alt="萌ICP备案号" src="/icon/moe.png">
+				<a href="https://winver18.pages.dev/301.html">萌icp备20250666号</a>
+            <p>© 2022-2025 张钊睿</p>
+    <script>
+		
+        // 定义回调函数，当用户完成验证后调用
+        function onVerify(token) {
+            // 验证成功，跳转到 index.php
+            window.location.href = 'index.php';
+        }
+    </script>
+</body>
+</html>

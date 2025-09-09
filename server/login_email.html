@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邮箱验证码系统</title>
+</head>
+<body>
+    <h1>邮箱验证码系统</h1>
+    <form id="emailForm">
+        <label for="email">邮箱地址：</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <button type="button" onclick="sendVerificationCode()">发送验证码</button>
+    </form>
+
+    <form id="verifyForm" style="display:none;">
+        <label for="verificationCode">验证码：</label>
+        <input type="text" id="verificationCode" name="verificationCode" required><br><br>
+        <button type="button" onclick="verifyCode()">验证验证码</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function generateVerificationCode(length = 6) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '';
+            for (let i = 0; i < length; i++) {
+                code += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return code;
+        }
+
+        function sendVerificationCode() {
+            const email = document.getElementById('email').value;
+            if (!email) {
+                alert('请输入邮箱地址！');
+                return;
+            }
+
+            const code = generateVerificationCode();
+            localStorage.setItem('verificationCode', code);
+
+            Email.send({
+                Host: "smtp.qiye.aliyun.com", // 阿里企业邮箱SMTP服务器
+                Username: "server@zzrbk.ip-ddns.com", // 阿里企业邮箱账号
+                Password: "1Of0CO0RbiUU0mLw", // 授权码
+                To: email,
+                From: "server@zzrbk.ip-ddns.com",
+                Subject: "邮箱验证码",
+                Body: `您的验证码是：${code}，有效期为5分钟。`
+            }).then(
+                message => {
+                    if (message === "OK") {
+                        alert('验证码已发送，请注意查收！');
+                        document.getElementById('emailForm').style.display = 'none';
+                        document.getElementById('verifyForm').style.display = 'block';
+                    } else {
+                        alert('验证码发送失败，请检查邮箱地址或网络连接。');
+                    }
+                }
+            );
+        }
+
+        function verifyCode() {
+            const inputCode = document.getElementById('verificationCode').value;
+            const storedCode = localStorage.getItem('verificationCode');
+
+            if (!storedCode) {
+                alert('验证码已过期或不存在，请重新发送。');
+                return;
+            }
+
+            if (inputCode === storedCode) {
+                alert('验证码验证成功！');
+                document.getElementById('message').innerText = '验证成功！';
+            } else {
+                alert('验证码错误，请重新输入。');
+            }
+        }
+    </script>
+</body>
+</html>
